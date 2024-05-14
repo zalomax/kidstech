@@ -1,0 +1,23 @@
+.tag-widget-wrapper {
+  border: 1px solid #cfcfe3;
+  margin: 24px 12px 24px 24px;
+  border-radius: 20px;
+
+  .tag-list {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+
+    .tag-item {
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 10px;
+    }
+
+    .tag-item.active {
+      border-radius: 10px;
+      color: white;
+      background-color: #6fbf7b;
+    }
+  }
+}
