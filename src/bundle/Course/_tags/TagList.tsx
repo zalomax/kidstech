@@ -1,15 +1,23 @@
 import TagItem from "./TagItem";
 
-const TagList = ({ items }: any) => {
+const TagList = ({ items, selectedTag, setSelectedTag }: any) => {
 
   return (
     <ul className="tag-list">
-      <li className="tag-item active">
+      <li className={`tag-item ${selectedTag ? '' : 'active'}`}
+        onClick={() => setSelectedTag(null)}
+      >
         Все темы
       </li>
       {items.map((item: any) => {
+
         return (
-          <TagItem key={`tag-${item}`} item={item} />
+          <TagItem
+            key={`tag-${item}`}
+            item={item}
+            selectedTag={selectedTag}
+            setSelectedTag={setSelectedTag}
+          />
         )
       })
       }
