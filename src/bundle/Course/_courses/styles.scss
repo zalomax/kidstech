@@ -1,21 +1,25 @@
 .course-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(175px, 1fr));
+  grid-auto-rows: 150px auto;
   gap: 20px;
   padding: 24px 24px 12px 12px;
 
   .course-item {
     background-color: white;
-    height: 210px;
+    grid-row: span 2;
+    display: grid;
+    gap: 0;
+    grid-template-rows: subgrid;
     border-radius: 20px;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 10px 10px;
+    overflow: hidden;
 
     .img-block {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 160px;
       border-radius: 20px 20px 0 0;
 
       img {
@@ -25,7 +29,7 @@
 
     .name-block {
       display: flex;
-      padding: 10px 20px 10px 20px;
+      padding: 10px 20px 20px 20px;
       font-weight: bold;
       font-size: 1.1rem;
       line-height: 1.1rem;
