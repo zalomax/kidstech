@@ -1,6 +1,13 @@
+import { FC } from "react";
 import TagItem from "./TagItem";
 
-const TagList = ({ items, selectedTag, setSelectedTag }: any) => {
+type PropsType = {
+  items: string[] | null,
+  selectedTag: string | null,
+  setSelectedTag: (selectedTag: string | null) => void
+}
+
+const TagList: FC<PropsType> = ({ items, selectedTag, setSelectedTag }: any) => {
 
   return (
     <ul className="tag-list">

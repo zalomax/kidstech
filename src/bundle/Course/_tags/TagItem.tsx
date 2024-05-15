@@ -1,4 +1,12 @@
-const TagItem = ({ item, selectedTag, setSelectedTag }: any) => {
+import { FC } from "react";
+
+type PropsType = {
+  item: string | null,
+  selectedTag: string | null,
+  setSelectedTag: (selectedTag: string | null) => void
+}
+
+const TagItem: FC<PropsType> = ({ item, selectedTag, setSelectedTag }) => {
   const isActive = item === selectedTag;
 
   return (

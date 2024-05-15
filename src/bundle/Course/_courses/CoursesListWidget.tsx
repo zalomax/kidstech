@@ -1,9 +1,19 @@
+import { FC } from "react";
 import CourseList from "./CourseList";
 import './styles.scss'
+import { CourseListType } from "../../../data/v1/docs_courses/types";
 
-const CoursesListWidget = ({ items }: any) => {
+type PropsType = {
+  items: CourseListType | null
+}
+
+const CoursesListWidget: FC<PropsType> = ({ items }) => {
+  if (!items) {
+    return <div>У вас пока нет курсов</div>
+  }
+
   return (
-      <CourseList items={items} />
+    <CourseList items={items} />
   );
 }
 

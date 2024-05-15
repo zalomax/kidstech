@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useState } from 'react'
 import getCourseListApi from '../../../data/v1/docs_courses/getCourseListApi'
+import { CourseListType } from '../../../data/v1/docs_courses/types'
 
 const useLoadCourseList = (selectedTag: string | null) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [courseList, setCourseList] = useState<any[] | null>(null)
+  const [courseList, setCourseList] = useState<CourseListType | null>(null)
 
   const loadCourseList = useCallback(async () => {
     try {
@@ -11,7 +12,7 @@ const useLoadCourseList = (selectedTag: string | null) => {
 
       const res = await getCourseListApi()
 
-      setCourseList(res.json as any[])
+      setCourseList(res.json)
       setIsLoading(false)
     } catch (e) {
       console.warn(e)
@@ -19,7 +20,7 @@ const useLoadCourseList = (selectedTag: string | null) => {
   }, [])
 
   const tagList = useMemo(() => {
-    let list: any[] = [];
+    let list: string[] = [];
 
     if (Array.isArray(courseList)) {
       courseList.forEach(courseItem => {
@@ -37,7 +38,7 @@ const useLoadCourseList = (selectedTag: string | null) => {
   const filtredCourseList = useMemo(() => {
     if (!selectedTag) return courseList;
 
-    let list: any[] = [];
+    let list: CourseListType = [];
 
     if (Array.isArray(courseList)) {
       courseList.forEach(courseItem => {
