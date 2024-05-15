@@ -1,8 +1,9 @@
 import { useCallback, useMemo, useState } from 'react'
 import getCourseListApi from '../../../data/v1/docs_courses/getCourseListApi'
 import { CourseListType } from '../../../data/v1/docs_courses/types'
+import { allTagItem } from './const'
 
-const useLoadCourseList = (selectedTag: string | null) => {
+const useLoadCourseList = (selectedTag: string) => {
   const [isLoading, setIsLoading] = useState(true)
   const [courseList, setCourseList] = useState<CourseListType | null>(null)
 
@@ -36,7 +37,7 @@ const useLoadCourseList = (selectedTag: string | null) => {
   }, [courseList]);
 
   const filtredCourseList = useMemo(() => {
-    if (!selectedTag) return courseList;
+    if (selectedTag === allTagItem) return courseList;
 
     let list: CourseListType = [];
 

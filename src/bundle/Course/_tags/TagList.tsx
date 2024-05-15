@@ -1,29 +1,26 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import TagItem from "./TagItem";
+import { allTagItem } from "../hooks/const";
 
 type PropsType = {
-  items: string[] | null,
-  selectedTag: string | null,
-  setSelectedTag: (selectedTag: string | null) => void
+  items: string[],
+  selected: string | null,
+  handleSelected: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-const TagList: FC<PropsType> = ({ items, selectedTag, setSelectedTag }: any) => {
+const TagList: FC<PropsType> = ({ items, selected, handleSelected }) => {
+  const finalItems = [allTagItem, ...items]
 
   return (
     <ul className="tag-list">
-      <li className={`tag-item ${selectedTag ? '' : 'active'}`}
-        onClick={() => setSelectedTag(null)}
-      >
-        Все темы
-      </li>
-      {items.map((item: any) => {
+      {finalItems.map((item: any) => {
 
         return (
           <TagItem
             key={`tag-${item}`}
             item={item}
-            selectedTag={selectedTag}
-            setSelectedTag={setSelectedTag}
+            selected={selected}
+            handleSelected={handleSelected}
           />
         )
       })
@@ -32,4 +29,4 @@ const TagList: FC<PropsType> = ({ items, selectedTag, setSelectedTag }: any) => 
   );
 }
 
-export default TagList;
+export default memo(TagList);

@@ -1,21 +1,22 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type PropsType = {
   item: string | null,
-  selectedTag: string | null,
-  setSelectedTag: (selectedTag: string | null) => void
+  selected: string | null,
+  handleSelected: (e: React.MouseEvent<HTMLElement>) => void
 }
 
-const TagItem: FC<PropsType> = ({ item, selectedTag, setSelectedTag }) => {
-  const isActive = item === selectedTag;
+const TagItem: FC<PropsType> = ({ item, selected, handleSelected }) => {
+  const isActive = item === selected;
 
   return (
     <li className={`tag-item ${isActive ? 'active' : ''}`}
-      onClick={() => setSelectedTag(item)}
+      onClick={handleSelected}
+      data-tag={item}
     >
       {item}
     </li>
   );
 }
 
-export default TagItem;
+export default memo(TagItem);
